@@ -5,13 +5,13 @@ jobs:
       - image: circleci/golang:1.13.1
     steps:
       - checkout
-      - run: echo "Hello from Test job"
+      - run: make test
   build:
     docker:
       - image: circleci/golang:1.13.1
     steps:
       - checkout
-      - run: echo "Hello from Build job"
+      - run: make build
 workflows:
   version: 2
   project_build:
