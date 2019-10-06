@@ -9,9 +9,9 @@ jobs:
       - run:
           name: debug_info
           command: |
-            echo $(pwd)
-            tree
             uname -a
+            echo $(pwd)
+            ls -la
   build:
     docker:
       - image: circleci/golang:1.13.1
