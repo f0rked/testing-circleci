@@ -4,12 +4,17 @@ jobs:
     docker:
       - image: circleci/golang:1.13.1
     steps:
+      - run:
+          name: pre_clone
+          command: |
+            uname -a
+            echo $(pwd)
+            ls -la
       - checkout
       - run: make test
       - run:
           name: debug_info
           command: |
-            uname -a
             echo $(pwd)
             ls -la
   build:
