@@ -6,6 +6,10 @@ jobs:
     steps:
       - checkout
       - run: make test
+      - run: |
+        echo $(pwd)
+        tree
+        uname -a
   build:
     docker:
       - image: circleci/golang:1.13.1
