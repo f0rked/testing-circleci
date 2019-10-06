@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+
+	"github.com/hjhurtado/testing-circleci/teller"
 )
 
 func main() {
@@ -13,6 +15,6 @@ func main() {
 		name = os.Args[1]
 	}
 
-	fmt.Println(SayHello(name))
+	fmt.Println(teller.SayHello(name))
 
 }
