@@ -1,4 +1,4 @@
-.PHONY: clean lint test build
+.PHONY: clean lint test build # release
 
 BIN_DIR				:= $(GOPATH)/bin
 GOLANGCILINT	:= $(BIN_DIR)/golangci-lint
@@ -8,13 +8,8 @@ COVER_DIR 		:= $(OUTPUT_DIR)/coverage
 COVER_FILE 		:= $(COVER_DIR)/coverage.out
 RELEASE_DIR 	:= $(OUTPUT_DIR)/release
 BINARY				:= hello
-
 #PLATFORMS			:= linux darwin windows
 #os 						= $(word 1, $@)
-#build: $(PLATFORMS)
-#$(PLATFORMS): test
-#	mkdir -p $(RELEASE_DIR)
-#	GOOS=$(os) GOARCH=amd64 go build -o $(RELEASE_DIR)/$(BINARY)-$(os)-amd64 cmd/hello.go
 
 build: $(RELEASE_DIR)/$(BINARY)
 
@@ -30,6 +25,15 @@ $(COVER_FILE): $(PROJECT_FILES)
 
 lint: $(GOLANGCILINT)
 	$(BIN_DIR)/golangci-lint run -v ./...
+
+acceptance:
+
+release:
+#release: $(PLATFORMS)
+#
+#$(PLATFORMS):
+#	mkdir -p $(RELEASE_DIR)
+#	GOOS=$(os) GOARCH=amd64 go build -o $(RELEASE_DIR)/$(BINARY)-$(os)-amd64 cmd/hello.go
 
 clean:
 	rm -rf output
