@@ -1,5 +1,7 @@
 package teller
 
+import "fmt"
+
 // SayHello creates a personalyzed greeting message
 func SayHello(name string) string {
 
@@ -7,5 +9,5 @@ func SayHello(name string) string {
 		name = "Visitor"
 	}
 
-	return "Hello " + name + "!!"
+	return fmt.Sprintf("Hello %s!!", name)
 }

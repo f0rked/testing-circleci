@@ -11,7 +11,7 @@ func TestSayHelloEmptyParam(t *testing.T) {
 	name := ""
 
 	if value := teller.SayHello(name); value != expected {
-		t.Errorf("Error: expected %s, got %s", expected, value)
+		t.Errorf("Error: expected %q, got %q", expected, value)
 	}
 }
 
@@ -20,6 +20,6 @@ func TestSayHelloWithRealParam(t *testing.T) {
 	name := "Héctor"
 
 	if value := teller.SayHello(name); value != expected {
-		t.Errorf("Error: expected %s, got %s", expected, value)
+		t.Errorf("Error: expected %q, got %q", expected, value)
 	}
 }
