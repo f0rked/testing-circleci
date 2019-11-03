@@ -2,6 +2,7 @@
 
 BIN_DIR				:= $(GOPATH)/bin
 GOLANGCILINT	:= $(BIN_DIR)/golangci-lint
+GOLANGGODOG		:= $(BIN_DIR)/godog
 PROJECT_FILES := $(shell find . -name *.go)
 OUTPUT_DIR		:= output
 COVER_DIR 		:= $(OUTPUT_DIR)/coverage
@@ -24,9 +25,10 @@ $(COVER_FILE): $(PROJECT_FILES)
 	go test -coverprofile=$(COVER_FILE) ./...
 
 lint: $(GOLANGCILINT)
-	$(BIN_DIR)/golangci-lint run -v ./...
+	$(GOLANGCILINT) run -v ./...
 
-acceptance:
+acceptance: build $(GOLANGGODOG)
+	cd features && $(GOLANGGODOG) . && cd ..
 
 release:
 #release: $(PLATFORMS)
@@ -40,3 +42,6 @@ clean:
 
 $(GOLANGCILINT):
 	curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh| sh -s -- -b $(BIN_DIR) v1.21.0
+
+$(GOLANGGODOG):
+	go get -u github.com/DATA-DOG/godog/cmd/godog

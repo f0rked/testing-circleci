@@ -15,6 +15,11 @@ func main() {
 		name = os.Args[1]
 	}
 
-	fmt.Println(teller.SayHello(name))
+	if out, err := teller.SayHello(name); err == nil {
+		fmt.Fprintln(os.Stdout, out)
+	} else {
+		fmt.Fprintln(os.Stderr, err.Error())
+		os.Exit(1)
+	}
 
 }
