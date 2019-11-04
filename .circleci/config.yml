@@ -6,20 +6,20 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Unit tests
-        command: make test
+          name: Unit tests
+          command: make test
       - run:
-        name: Build binary
-        command: make build
+          name: Build binary
+          command: make build
       - run:
-        name: Acceptance tests
-        command: make acceptance
+          name: Acceptance tests
+          command: make acceptance
       - run:
-        name: Release
-        command: make release
+          name: Release
+          command: make release
       - store_artifacts:
-        path: output/release
-        destination: binaries
+          path: output/release
+          destination: binaries
 #workflows:
 #  version: 2
 #  project_build:
