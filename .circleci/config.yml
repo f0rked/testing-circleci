@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  build-n-check:
     docker:
       - image: circleci/golang:1.13.3
     steps:
@@ -14,15 +14,14 @@ jobs:
       - run:
           name: Acceptance tests
           command: make acceptance
-      - run:
-          name: Release
-          command: make release
-      - store_artifacts:
-          path: output/release
-          destination: binaries
-#workflows:
-#  version: 2
-#  project_build:
-#    jobs:
-#      - unit-test
-#      - build
+#      - run:
+#          name: Release
+#          command: make release
+#      - store_artifacts:
+#          path: output/release
+#          destination: binaries
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build-n-check
