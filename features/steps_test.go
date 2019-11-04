@@ -58,7 +58,7 @@ func FeatureContext(s *godog.Suite) {
 
 	ctx.helloBinary = os.Getenv("HELLO_BINARY")
 	if ctx.helloBinary == "" {
-		ctx.helloBinary = "../output/release/hello"
+		ctx.helloBinary = "../output/hello"
 	}
 
 	s.Step(`^I invoke hello with parameter "([^"]*)"$`, ctx.iInvokeHelloWithParameter)
