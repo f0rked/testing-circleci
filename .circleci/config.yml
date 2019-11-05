@@ -25,7 +25,7 @@ workflows:
   nightly-check:
     triggers:
       - schedule:
-          cron: "05 21 * * *"
+          cron: "15 20 * * *"
           filters:
             branches:
               only: "*"
