@@ -25,7 +25,10 @@ workflows:
   nightly-check:
     triggers:
       - schedule:
-          cron: "0 21 * * *"
+          cron: "05 21 * * *"
+          filters:
+            branches:
+              only: "*"
     jobs:
       - build-n-check
   commit:
