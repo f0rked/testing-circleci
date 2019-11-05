@@ -1,4 +1,4 @@
-.PHONY: clean acceptance release lint test build
+.PHONY: clean release acceptance lint test build
 
 BIN_DIR				:= $(GOPATH)/bin
 GOLANGCI_LINT	:= $(BIN_DIR)/golangci-lint
