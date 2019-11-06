@@ -36,16 +36,21 @@ workflows:
               only: /.*/
     jobs:
       - build-n-check
+  commit:
+    jobs:
+      - build-n-check
   build-n-release:
     jobs:
       - build-n-check:
           filters:
+            branches:
+              ignore: /.*/
             tags:
-              only: /.*/
+              only: /^v.*/
       - release:
           filters:
             branches:
-              only: master
+              ignore: /.*/
             tags:
               only: /^v.*/
           requires:
