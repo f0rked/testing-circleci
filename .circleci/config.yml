@@ -38,11 +38,11 @@ workflows:
       - build-n-check
   build-n-release:
     jobs:
-      - build-n-check
+      - build-n-check:
           filters:
             tags:
               only: /.*/
-      - release
+      - release:
           filters:
             branches:
               only: master
