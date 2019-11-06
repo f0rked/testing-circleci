@@ -1,5 +1,4 @@
-.PHONY: clean release acceptance lint test build
-
+#
 BIN_DIR				:= $(GOPATH)/bin
 GOLANGCI_LINT	:= $(BIN_DIR)/golangci-lint
 GOLANG_GODOG	:= $(BIN_DIR)/godog
@@ -11,6 +10,8 @@ RELEASE_DIR		:= $(OUTPUT_DIR)/release
 BINARY				:= hello
 PLATFORMS			:= linux darwin windows
 os						= $(word 1, $@)
+
+.PHONY: clean $(PLATFORMS) release acceptance lint test build
 
 build: $(OUTPUT_DIR)/$(BINARY)
 
