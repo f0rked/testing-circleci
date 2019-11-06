@@ -14,23 +14,35 @@ jobs:
       - run:
           name: Acceptance tests
           command: make acceptance
-#      - run:
-#          name: Release
-#          command: make release
-#      - store_artifacts:
-#          path: output/release
-#          destination: binaries
+  release:
+    docker:
+      - image: circleci/golang:1.13.3
+    steps:
+      - checkout
+      - run:
+          name: Release
+          command: make release
+      - store_artifacts:
+          path: output/release
+          destination: binaries
 workflows:
   version: 2
   nightly-check:
     triggers:
       - schedule:
-          cron: "15 20 * * *"
+          cron: "40 19 * * *"
           filters:
             branches:
-              only: "*"
+              only:
+                - /.*/
     jobs:
       - build-n-check
   commit:
     jobs:
       - build-n-check
+#  build-n-release:
+#    jobs:
+#      - build-n-check
+#      - release
+#          requires:
+#            - build-n-check
