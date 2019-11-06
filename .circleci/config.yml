@@ -33,16 +33,20 @@ workflows:
           cron: "40 19 * * *"
           filters:
             branches:
-              only:
-                - /.*/
+              only: /.*/
     jobs:
       - build-n-check
-  commit:
+  build-n-release:
     jobs:
       - build-n-check
-#  build-n-release:
-#    jobs:
-#      - build-n-check
-#      - release
-#          requires:
-#            - build-n-check
+          filters:
+            tags:
+              only: /.*/
+      - release
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /^v.*/
+          requires:
+            - build-n-check
