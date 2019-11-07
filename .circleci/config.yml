@@ -4,11 +4,6 @@ jobs:
     docker:
       - image: circleci/golang:1.13.3
     steps:
-      - run:
-          command: |
-            pwd
-            ls -la .
-            ls -la ..
       - checkout
       - run:
           name: Unit tests
