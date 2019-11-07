@@ -30,10 +30,12 @@ workflows:
   nightly-check:
     triggers:
       - schedule:
-          cron: "40 19 * * *"
+          cron: "5 19 * * *"
           filters:
             branches:
-              only: /.*/
+              only:
+                - master
+                - feature-new-branch
     jobs:
       - build-n-check
   commit:
