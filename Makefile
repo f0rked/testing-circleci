@@ -2,6 +2,7 @@
 BIN_DIR				:= $(GOPATH)/bin
 GOLANGCI_LINT	:= $(BIN_DIR)/golangci-lint
 GOLANG_GODOG	:= $(BIN_DIR)/godog
+GOLANG_GHR		:= $(BIN_DIR)/ghr
 PROJECT_FILES	:= $(shell find . -name *.go)
 OUTPUT_DIR		:= output
 COVER_DIR			:= $(OUTPUT_DIR)/coverage
@@ -31,7 +32,13 @@ lint: $(GOLANGCI_LINT)
 acceptance: $(GOLANG_GODOG) $(OUTPUT_DIR)/$(BINARY)
 	cd features && HELLO_BINARY=../$(OUTPUT_DIR)/$(BINARY) $(GOLANG_GODOG) . && cd ..
 
-release: $(PLATFORMS)
+release: $(PLATFORMS) $(GOLANG_GHR)
+	$(GOLANG_GHR) -t $${GITHUB_TOKEN} \
+								-u $${CIRCLE_PROJECT_USERNAME} \
+								-r $${CIRCLE_PROJECT_REPONAME} \
+								-c $${CIRCLE_SHA1} \
+								-delete \
+								$${CIRCLE_TAG} $(RELEASE_DIR)
 
 $(PLATFORMS):
 	mkdir -p $(RELEASE_DIR)
@@ -45,3 +52,6 @@ $(GOLANGCI_LINT):
 
 $(GOLANG_GODOG):
 	go get -u github.com/DATA-DOG/godog/cmd/godog
+
+$(GOLANG_GHR):
+	go get -u github.com/tcnksm/ghr

@@ -5,6 +5,7 @@ jobs:
       - image: circleci/golang:1.13.3
     steps:
       - checkout
+      - run: env
       - run:
           name: Unit tests
           command: make test
@@ -19,6 +20,7 @@ jobs:
       - image: circleci/golang:1.13.3
     steps:
       - checkout
+      - run: env
       - run:
           name: Release
           command: make release
@@ -49,6 +51,7 @@ workflows:
             tags:
               only: /^v.*/
       - release:
+          context: GitHub-Creds
           filters:
             branches:
               ignore: /.*/
