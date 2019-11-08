@@ -54,6 +54,7 @@ workflows:
               only: /^v.*/
       - release:
           context: GitHub-Creds
+          context: DockerHub-Creds
           filters:
             branches:
               ignore: /.*/
