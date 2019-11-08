@@ -53,8 +53,7 @@ workflows:
             tags:
               only: /^v.*/
       - release:
-          context: GitHub-Creds
-          context: DockerHub-Creds
+          context: Credentials
           filters:
             branches:
               ignore: /.*/
