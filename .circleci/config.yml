@@ -25,8 +25,9 @@ jobs:
       - store_artifacts:
           path: output/release
           destination: binaries
-      - publish_docker_image:
-          name: Publish docker image
+      - setup_remote_docker
+      - publish_image:
+          name: Dockerhub
           command: make image
 workflows:
   version: 2
