@@ -28,7 +28,7 @@ jobs:
       - setup_remote_docker
       - run:
           name: Dockerhub
-          command: make image
+          command: make docker-image
 workflows:
   version: 2
   nightly-check:
