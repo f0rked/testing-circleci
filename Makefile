@@ -72,4 +72,4 @@ $(GOLANG_GODOG):
 	go get -u github.com/DATA-DOG/godog/cmd/godog@v0.7.13
 
 $(GOLANG_GHR):
-	go get -u github.com/tcnksm/ghr
+	go get -u github.com/tcnksm/ghr@v0.13.0
