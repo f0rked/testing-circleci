@@ -69,7 +69,7 @@ $(GOLANGCI_LINT):
 	curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh| sh -s -- -b $(BIN_DIR) v1.21.0
 
 $(GOLANG_GODOG):
-	go get -u github.com/DATA-DOG/godog/cmd/godog
+	go get -u github.com/DATA-DOG/godog/cmd/godog@v0.7.13
 
 $(GOLANG_GHR):
 	go get -u github.com/tcnksm/ghr
